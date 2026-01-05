@@ -454,3 +454,15 @@ body {
     color: rgba(255, 255, 255, 0.3); /* Dimmed text for copyright */
     margin-top: 2rem;
 }
+
+.copyright a {
+    color: rgba(255, 255, 255, 0.6); /* Slightly brighter than the copyright text */
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.copyright a:hover {
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
+}
