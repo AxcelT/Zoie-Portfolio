@@ -1,0 +1,373 @@
+:root {
+    --bg-color: #F9F9F7;
+    --bg-offset: #F2F2F0; /* Slightly darker cream for the experience section */
+    --text-primary: #2C3333;
+    --text-secondary: #6B705C;
+    --accent: #A5A58D;
+    --line-color: #Ddddd5;
+    --white: #ffffff;
+    
+    --font-heading: 'Lora', serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+/* Typography Utilities */
+.italic-accent {
+    font-style: italic;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    position: sticky;
+    top: 0;
+    background-color: rgba(249, 249, 247, 0.95); /* Slight transparency */
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.headline {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.sub-headline {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.hero-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* About Section */
+.section {
+    padding: 6rem 5%;
+}
+
+.bg-offset {
+    background-color: var(--bg-offset);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-tag {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 2rem;
+}
+
+.about-text h2 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* TIMELINE & EXPERIENCE STYLING */
+/* The developer designs this to handle grouped roles under one company */
+
+.timeline {
+    position: relative;
+    padding-left: 1rem;
+}
+
+.timeline-group {
+    margin-bottom: 4rem;
+}
+
+.company-header {
+    margin-bottom: 1.5rem;
+}
+
+.company-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.location {
+    font-size: 0.9rem;
+    color: var(--accent);
+    display: block;
+    margin-top: 0.2rem;
+}
+
+/* The vertical line connecting roles */
+.role-list {
+    border-left: 1px solid var(--line-color);
+    margin-left: 10px;
+    padding-left: 30px;
+}
+
+.role-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+}
+
+.role-item:last-child {
+    padding-bottom: 0;
+}
+
+/* The dot on the timeline */
+.role-marker {
+    position: absolute;
+    left: -35px; /* Aligns dot with the border line */
+    top: 6px;
+    width: 9px;
+    height: 9px;
+    background-color: var(--bg-offset);
+    border: 1px solid var(--text-secondary);
+    border-radius: 50%;
+}
+
+.current-role .role-marker {
+    background-color: var(--text-secondary); /* Solid dot for current role */
+}
+
+.role-content h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.duration {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+    font-family: var(--font-body);
+}
+
+.role-desc {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+}
+
+/* Footer */
+.footer-section {
+    text-align: center;
+    padding: 8rem 5%;
+}
+
+.footer-note {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.email-link {
+    display: block;
+    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: color 0.3s ease;
+}
+
+.email-link:hover {
+    color: var(--text-secondary);
+}
+
+.social-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: border-color 0.3s ease;
+}
+
+.social-links a:hover {
+    border-color: var(--text-primary);
+}
+
+.copyright {
+    margin-top: 4rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+/* Animation utilities */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .headline {
+        font-size: 3rem;
+    }
+    
+    .timeline {
+        padding-left: 0;
+    }
+    
+    .role-list {
+        margin-left: 0;
+        padding-left: 20px;
+        border-left: 2px solid var(--line-color);
+    }
+    
+    .role-marker {
+        left: -25px;
+    }
+}
+
+/* EDUCATION SECTION STYLING */
+/* The design shifts here to a "Card/Masonry" philosophy.
+   While Experience was vertical and connected, Education is solid and boxed.
+*/
+
+.education-grid {
+    display: grid;
+    /* This creates a responsive grid that fits two cards side-by-side on desktop
+       but stacks them on mobile automatically. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.edu-card {
+    background-color: var(--white);
+    padding: 3rem 2rem;
+    border: 1px solid rgba(0,0,0,0.03); /* Extremely subtle border */
+    text-align: center; /* Centered text mimics a framed certificate */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Adds a subtle "lift" effect when the user hovers over a degree */
+.edu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-color: transparent;
+}
+
+.edu-year {
+    display: inline-block;
+    background-color: var(--bg-offset);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+    letter-spacing: 1px;
+}
+
+.degree-title {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+}
+
+.school-name {
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.edu-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 80%;
+    margin: 0 auto; /* Centers the text block within the card */
+}
