@@ -371,3 +371,25 @@ body {
     max-width: 80%;
     margin: 0 auto; /* Centers the text block within the card */
 }
+
+.role-desc-list {
+    list-style-type: disc;
+    margin-left: 1.2rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.role-desc-list li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+/* This class highlights the numbers to make them pop out to the reader */
+.highlight-metric {
+    font-weight: 600;
+    color: var(--text-primary);
+    background-color: #E8E8E4; /* A darker shade of the theme's cream/beige */
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #Ddddd5;
+}
