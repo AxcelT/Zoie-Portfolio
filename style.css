@@ -393,3 +393,64 @@ body {
     border-radius: 4px;
     border: 1px solid #Ddddd5;
 }
+
+/* Footer - Dark Contrast Design */
+.footer-section {
+    text-align: center;
+    padding: 8rem 5%;
+    background-color: var(--text-primary); /* Uses the dark charcoal color as background */
+    color: var(--bg-color); /* Light cream text */
+    margin-top: 4rem; /* Adds distinct separation from the previous section */
+}
+
+.footer-note {
+    font-family: var(--font-heading);
+    font-style: italic;
+    color: var(--accent); /* Sage green accent */
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.email-link {
+    display: block;
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font sizing */
+    font-family: var(--font-heading);
+    color: var(--white); /* White text to pop against the dark background */
+    text-decoration: none;
+    margin-bottom: 3rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.email-link:hover {
+    color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.social-links a {
+    text-decoration: none;
+    color: var(--bg-offset); /* Softer white/cream */
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3); /* Dimmed text for copyright */
+    margin-top: 2rem;
+}
