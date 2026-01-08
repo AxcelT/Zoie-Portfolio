@@ -1,12 +1,32 @@
 /*
-    This script handles two main functions:
-    1. Smooth scrolling when navigation links are clicked.
-    2. An intersection observer to trigger fade-in animations on scroll.
+    RETRO_SYSTEM_SCRIPT_V2.0
+    1. System Clock
+    2. Smooth Scrolling
 */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Smooth scrolling for navigation anchors
+    // [FUNCTION 01] System Clock
+    // Updates the element with ID 'system-clock' every second
+    function updateClock() {
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('en-US', { 
+            hour12: false, 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+        
+        const clockElement = document.getElementById('system-clock');
+        if (clockElement) {
+            clockElement.textContent = timeString;
+        }
+    }
+    
+    setInterval(updateClock, 1000);
+    updateClock(); // Initial call
+
+    // [FUNCTION 02] Smooth Scrolling
     const links = document.querySelectorAll('a[href^="#"]');
     
     links.forEach(link => {
@@ -22,24 +42,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
-    // Intersection Observer for fade-in animations
-    // This watches elements with the class 'fade-in' and adds 'visible' when they enter the viewport
-    const observerOptions = {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: "0px 0px -50px 0px" // Offset slightly to trigger before bottom of screen
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // The observer stops watching the element once it has faded in
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const fadeElements = document.querySelectorAll('.fade-in');
-    fadeElements.forEach(el => observer.observe(el));
 });
