@@ -1,468 +1,252 @@
 :root {
-    --bg-color: #F9F9F7;
-    --bg-offset: #F2F2F0; /* Slightly darker cream for the experience section */
-    --text-primary: #2C3333;
-    --text-secondary: #6B705C;
-    --accent: #A5A58D;
-    --line-color: #Ddddd5;
-    --white: #ffffff;
+    /* PALETTE: Retro Stripe */
+    --c-red:    #E76F51;
+    --c-orange: #F4A261;
+    --c-yellow: #E9C46A;
+    --c-cyan:   #2A9D8F;
+    --c-blue:   #264653;
     
-    --font-heading: 'Lora', serif;
-    --font-body: 'Inter', sans-serif;
+    --c-bg:     #b6b6b6; /* Classic Mac Desktop Grey */
+    --c-win-bg: #FFFDF0; /* Paper White for Window Content */
+    --c-ink:    #1D1D1B;
+    
+    /* FONTS */
+    --font-head: 'Space Mono', monospace;
+    --font-body: 'Courier Prime', monospace;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    background-color: var(--c-bg);
+    /* Dotted Desktop Pattern */
+    /* The developer converts 1px stops to 0.0625rem and 20px sizing to 1.25rem */
+    background-image: radial-gradient(#888 0.0625rem, transparent 0.0625rem);
+    background-size: 1.25rem 1.25rem;
     font-family: var(--font-body);
-    line-height: 1.6;
+    color: var(--c-ink);
+    padding-bottom: 5rem; /* Scroll space */
 }
 
-/* Typography Utilities */
-.italic-accent {
-    font-style: italic;
-    color: var(--text-secondary);
-    font-weight: 400;
-}
-
-/* Navbar */
-.navbar {
+/* --- SYSTEM BAR (TOP) --- */
+.system-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1.875rem; /* 30px */
+    background: #FFF;
+    border-bottom: 0.125rem solid var(--c-ink); /* 2px */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 5%;
-    position: sticky;
-    top: 0;
-    background-color: rgba(249, 249, 247, 0.95); /* Slight transparency */
-    backdrop-filter: blur(5px);
+    padding: 0 1rem;
     z-index: 1000;
+    font-family: var(--font-head);
+    font-size: 0.8rem;
+    box-shadow: 0 0.125rem 0 rgba(0,0,0,0.1); /* 2px shadow */
 }
 
-.logo {
-    font-family: var(--font-heading);
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
+.bar-left { display: flex; gap: 1.5rem; align-items: center; }
+.apple-icon { font-size: 1.2rem; }
+.menu-item a { text-decoration: none; color: inherit; }
+.menu-item:hover { text-decoration: underline; cursor: pointer; }
 
-.nav-links {
-    list-style: none;
+/* --- DESKTOP LAYOUT --- */
+.desktop-area {
+    padding-top: 3.75rem; /* 60px: Space for bar */
     display: flex;
-    gap: 2.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
 }
 
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+/* --- WINDOW COMPONENT --- */
+.window-frame {
+    width: 90%;
+    max-width: 50rem; /* 800px */
+    background: var(--c-win-bg);
+    border: 0.125rem solid var(--c-ink); /* 2px */
+    box-shadow: 0.5rem 0.5rem 0 rgba(0,0,0,0.2); /* 8px */
+    display: flex;
+    flex-direction: column;
 }
 
-.nav-links a:hover {
-    opacity: 1;
-}
+/* THEME COLORS for Title Bars */
+.theme-red    .title-bar { background: var(--c-red); }
+.theme-orange .title-bar { background: var(--c-orange); }
+.theme-yellow .title-bar { background: var(--c-yellow); }
+.theme-cyan   .title-bar { background: var(--c-cyan); }
+.theme-blue   .title-bar { background: var(--c-blue); color: #FFF; }
 
-/* Hero Section */
-.hero {
-    height: 90vh;
+/* TITLE BAR STRUCTURE */
+.title-bar {
+    height: 2.1875rem; /* 35px */
+    border-bottom: 0.125rem solid var(--c-ink); /* 2px */
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    padding: 0 0.5rem;
+    justify-content: space-between;
+    font-family: var(--font-head);
+    font-weight: 700;
+    user-select: none;
 }
 
-.hero-content {
-    max-width: 800px;
-}
-
-.headline {
-    font-family: var(--font-heading);
-    font-size: 4.5rem;
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    color: var(--text-primary);
-}
-
-.sub-headline {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    max-width: 550px;
-    margin-bottom: 3rem;
-    font-weight: 300;
-}
-
-.hero-meta {
+.title-controls {
     display: flex;
-    gap: 1rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    gap: 0.375rem; /* 6px */
+}
+
+/* Retro Square Buttons */
+.btn {
+    width: 0.75rem;  /* 12px */
+    height: 0.75rem; /* 12px */
+    border: 0.125rem solid var(--c-ink); /* 2px */
+    background: #FFF;
+    box-shadow: 0.0625rem 0.0625rem 0 var(--c-ink); /* 1px */
+}
+.close-btn:hover { background: var(--c-ink); }
+
+.window-title {
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.0625rem; /* 1px */
+    padding-left: 0.6rem;
 }
 
-/* About Section */
-.section {
-    padding: 6rem 5%;
+/* Lines for texture in title bar */
+.title-lines {
+    flex-grow: 1;
+    height: 40%;
+    margin-left: 1rem;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent,
+        transparent 0.125rem, /* 2px */
+        var(--c-ink) 0.125rem,
+        var(--c-ink) 0.1875rem /* 3px */
+    );
+    opacity: 0.1;
 }
 
-.bg-offset {
-    background-color: var(--bg-offset);
+/* WINDOW CONTENT */
+.window-content {
+    padding: 2.5rem;
+    overflow: hidden;
 }
 
-.container {
-    max-width: 900px;
-    margin: 0 auto;
+/* HERO STYLES */
+.glitch-text {
+    font-family: var(--font-head);
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    margin-bottom: 0.5rem;
 }
-
-.section-tag {
-    display: block;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--accent);
+.role-subtitle {
+    font-size: 1rem;
     margin-bottom: 2rem;
+    color: var(--c-blue);
 }
+.hero-summary p { margin-bottom: 0.5rem; }
+.cursor { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
 
-.about-text h2 {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-}
-
-.about-text p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-/* TIMELINE & EXPERIENCE STYLING */
-/* The developer designs this to handle grouped roles under one company */
-
-.timeline {
-    position: relative;
-    padding-left: 1rem;
-}
-
-.timeline-group {
-    margin-bottom: 4rem;
-}
-
-.company-header {
-    margin-bottom: 1.5rem;
-}
-
-.company-header h3 {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 500;
-}
-
-.location {
-    font-size: 0.9rem;
-    color: var(--accent);
-    display: block;
-    margin-top: 0.2rem;
-}
-
-/* The vertical line connecting roles */
-.role-list {
-    border-left: 1px solid var(--line-color);
-    margin-left: 10px;
-    padding-left: 30px;
-}
-
-.role-item {
-    position: relative;
-    padding-bottom: 2.5rem;
-}
-
-.role-item:last-child {
-    padding-bottom: 0;
-}
-
-/* The dot on the timeline */
-.role-marker {
-    position: absolute;
-    left: -35px; /* Aligns dot with the border line */
-    top: 6px;
-    width: 9px;
-    height: 9px;
-    background-color: var(--bg-offset);
-    border: 1px solid var(--text-secondary);
-    border-radius: 50%;
-}
-
-.current-role .role-marker {
-    background-color: var(--text-secondary); /* Solid dot for current role */
-}
-
-.role-content h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.duration {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--accent);
-    margin-bottom: 0.8rem;
-    font-family: var(--font-body);
-}
-
-.role-desc {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-}
-
-/* Footer */
-.footer-section {
-    text-align: center;
-    padding: 8rem 5%;
-}
-
-.footer-note {
-    font-family: var(--font-heading);
+/* TEXT STYLES */
+.lead-quote {
+    font-size: 1.5rem;
+    font-weight: 700;
     font-style: italic;
-    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    color: var(--c-blue);
+}
+.body-text { line-height: 1.6; font-size: 1.1rem; }
+
+/* JOB STYLES */
+.job-group { margin-bottom: 2rem; }
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.125rem dashed var(--c-ink); /* 2px */
+    padding-bottom: 0.5rem;
     margin-bottom: 1rem;
+    font-family: var(--font-head);
 }
-
-.email-link {
-    display: block;
-    font-size: 2.5rem;
-    font-family: var(--font-heading);
-    color: var(--text-primary);
-    text-decoration: none;
-    margin-bottom: 2rem;
-    transition: color 0.3s ease;
+.company-link {
+    color: var(--c-blue);
+    font-weight: 700;
+    text-decoration: underline;
 }
+.company-link:hover { background: var(--c-yellow); color: var(--c-ink); }
 
-.email-link:hover {
-    color: var(--text-secondary);
+.role-block { margin-bottom: 1.5rem; }
+.role-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
 }
+.role-meta span { font-family: var(--font-head); opacity: 0.7; }
 
-.social-links a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 0.9rem;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
-    transition: border-color 0.3s ease;
+.retro-list {
+    list-style-type: square;
+    padding-left: 1.5rem;
 }
-
-.social-links a:hover {
-    border-color: var(--text-primary);
+.retro-list li { margin-bottom: 0.5rem; }
+.highlight {
+    background: rgba(233, 196, 106, 0.4);
+    padding: 0 0.25rem; /* 4px */
 }
+.win-divider { border: 0; border-top: 0.125rem solid var(--c-ink); margin: 2rem 0; }
 
-.copyright {
-    margin-top: 4rem;
-    font-size: 0.8rem;
-    color: var(--accent);
-}
-
-/* Animation utilities */
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .headline {
-        font-size: 3rem;
-    }
-    
-    .timeline {
-        padding-left: 0;
-    }
-    
-    .role-list {
-        margin-left: 0;
-        padding-left: 20px;
-        border-left: 2px solid var(--line-color);
-    }
-    
-    .role-marker {
-        left: -25px;
-    }
-}
-
-/* EDUCATION SECTION STYLING */
-/* The design shifts here to a "Card/Masonry" philosophy.
-   While Experience was vertical and connected, Education is solid and boxed.
-*/
-
-.education-grid {
+/* EDUCATION GRID (Folders) */
+.grid-content {
     display: grid;
-    /* This creates a responsive grid that fits two cards side-by-side on desktop
-       but stacks them on mobile automatically. */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    margin-top: 2rem;
 }
-
-.edu-card {
-    background-color: var(--white);
-    padding: 3rem 2rem;
-    border: 1px solid rgba(0,0,0,0.03); /* Extremely subtle border */
-    text-align: center; /* Centered text mimics a framed certificate */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Adds a subtle "lift" effect when the user hovers over a degree */
-.edu-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    border-color: transparent;
-}
-
-.edu-year {
-    display: inline-block;
-    background-color: var(--bg-offset);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-family: var(--font-body);
-    letter-spacing: 1px;
-}
-
-.degree-title {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-}
-
-.school-name {
-    font-size: 0.9rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-.edu-desc {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 80%;
-    margin: 0 auto; /* Centers the text block within the card */
-}
-
-.role-desc-list {
-    list-style-type: disc;
-    margin-left: 1.2rem;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-.role-desc-list li {
-    margin-bottom: 0.5rem;
-    padding-left: 0.5rem;
-}
-
-/* This class highlights the numbers to make them pop out to the reader */
-.highlight-metric {
-    font-weight: 600;
-    color: var(--text-primary);
-    background-color: #E8E8E4; /* A darker shade of the theme's cream/beige */
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #Ddddd5;
-}
-
-/* Footer - Dark Contrast Design */
-.footer-section {
-    text-align: center;
-    padding: 8rem 5%;
-    background-color: var(--text-primary); /* Uses the dark charcoal color as background */
-    color: var(--bg-color); /* Light cream text */
-    margin-top: 4rem; /* Adds distinct separation from the previous section */
-}
-
-.footer-note {
-    font-family: var(--font-heading);
-    font-style: italic;
-    color: var(--accent); /* Sage green accent */
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-}
-
-.email-link {
-    display: block;
-    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive font sizing */
-    font-family: var(--font-heading);
-    color: var(--white); /* White text to pop against the dark background */
-    text-decoration: none;
-    margin-bottom: 3rem;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.email-link:hover {
-    color: var(--accent);
-    transform: translateY(-5px);
-}
-
-.social-links {
+.folder-item {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    border: 0.0625rem dotted var(--c-ink); /* 1px */
 }
+.folder-item:hover {
+    background: var(--c-cyan);
+    color: #FFF;
+    border-style: solid;
+}
+.folder-icon { font-size: 3rem; margin-bottom: 1rem; }
 
-.social-links a {
+/* CONTACT STYLES */
+.center-text { text-align: center; }
+.btn-retro {
+    display: inline-block;
+    background: var(--c-ink);
+    color: #FFF;
+    padding: 1rem 2rem;
     text-decoration: none;
-    color: var(--bg-offset); /* Softer white/cream */
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
+    font-family: var(--font-head);
+    font-weight: 700;
+    margin: 2rem 0;
+    box-shadow: 0.25rem 0.25rem 0 var(--c-blue); /* 4px */
+    transition: transform 0.1s;
 }
-
-.social-links a:hover {
-    color: var(--white);
-    border-color: var(--white);
+.btn-retro:active { 
+    transform: translate(0.125rem, 0.125rem); /* 2px */
+    box-shadow: 0.125rem 0.125rem 0 var(--c-blue); /* 2px */
 }
+.link-dock a { color: var(--c-ink); font-weight: 700; text-decoration: underline; }
+.link-dock a:hover { color: var(--c-blue); }
+.win-footer { margin-top: 2rem; font-size: 0.8rem; opacity: 0.6; }
 
-.copyright {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.3); /* Dimmed text for copyright */
-    margin-top: 2rem;
-}
-
-.copyright a {
-    color: rgba(255, 255, 255, 0.6); /* Slightly brighter than the copyright text */
-    text-decoration: none;
-    border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.copyright a:hover {
-    color: var(--white);
-    border-bottom: 1px solid var(--white);
+/* MOBILE RESPONSIVE */
+@media (max-width: 37.5rem) { /* 600px */
+    .grid-content { grid-template-columns: 1fr; }
+    .role-meta { flex-direction: column; }
+    .window-content { padding: 1.5rem; }
+    .glitch-text { font-size: 2.5rem; }
 }
