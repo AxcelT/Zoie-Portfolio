@@ -256,3 +256,14 @@ body {
     .system-bar { padding: 0 0.5rem; }
     .bar-left { gap: 0.8rem; }
 }
+
+/* Footer Link Styling */
+.win-footer a {
+    color: inherit;            /* Inherits the footer's text color */
+    text-decoration: underline;
+}
+
+.win-footer a:hover {
+    color: var(--c-blue);      /* Matches other links on hover */
+    opacity: 1;                /* Makes it stand out from the faded footer */
+}
