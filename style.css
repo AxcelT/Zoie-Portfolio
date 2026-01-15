@@ -50,7 +50,11 @@ body {
 }
 
 .bar-left { display: flex; gap: 1.5rem; align-items: center; }
-.apple-icon { font-size: 1.2rem; }
+.apple-icon { 
+    width: 1rem;       /* Matches text size */
+    height: 1.2rem; 
+    fill: var(--c-ink); /* Adopts the theme's ink color */
+}
 .menu-item a { text-decoration: none; color: inherit; }
 .menu-item:hover { text-decoration: underline; cursor: pointer; }
 
@@ -249,4 +253,6 @@ body {
     .role-meta { flex-direction: column; }
     .window-content { padding: 1.5rem; }
     .glitch-text { font-size: 2.5rem; }
+    .system-bar { padding: 0 0.5rem; }
+    .bar-left { gap: 0.8rem; }
 }
