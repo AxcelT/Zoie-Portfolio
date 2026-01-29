@@ -343,7 +343,7 @@ body {
    ========================================= */
 .cursor { 
   font-weight: bold;
-  animation: blink 1s steps(2) infinite; 
+  animation: blink 1s steps(1) infinite; 
 }
 
 /* Creates a hard on/off toggle without fading */
@@ -363,4 +363,68 @@ body {
   .glitch-text { font-size: 2.5rem; }
   .system-bar { padding: 0 0.5rem; }
   .bar-left { gap: 0.8rem; }
+}
+
+/* =========================================
+   LOADING SCREEN
+   Full-screen overlay for the initial landing.
+   ========================================= */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--c-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: var(--font-head);
+}
+
+.loading-box {
+  width: 90%;
+  max-width: 25rem;
+  padding: 2rem;
+  background: var(--c-win-bg);
+  border: 0.125rem solid var(--c-ink);
+  box-shadow: 0.5rem 0.5rem 0 var(--c-ink);
+  text-align: center;
+}
+
+.loading-text {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.progress-container {
+  width: 100%;
+  height: 1.5rem;
+  border: 0.125rem solid var(--c-ink);
+  background: #FFF;
+  margin-bottom: 1rem;
+  padding: 0.125rem;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--c-cyan);
+  /* Animates the bar filling up over 1.8 seconds */
+  transition: width 1.8s ease-in-out;
+}
+
+.loading-status {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+/* Class to fade out the loader */
+.loader-finished {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
