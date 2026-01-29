@@ -2,6 +2,7 @@
     RETRO_SYSTEM_SCRIPT_V2.0
     1. System Clock
     2. Smooth Scrolling
+    3. Boot Sequence (Loading Screen)
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,11 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     setInterval(updateClock, 1000);
-    updateClock(); // Initial call
+    updateClock();
 
     // [FUNCTION 02] Smooth Scrolling
     const links = document.querySelectorAll('a[href^="#"]');
-    
     links.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -36,10 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
+                targetElement.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
+
+    // [FUNCTION 03] Boot Sequence
+    const loader = document.getElementById('loading-screen');
+    const progressBar = document.getElementById('progress-bar');
+    
+    if (loader && progressBar) {
+        setTimeout(() => {
+            progressBar.style.width = '100%';
+        }, 100);
+
+        setTimeout(() => {
+            loader.classList.add('loader-finished');
+        }, 2000);
+    }
 });

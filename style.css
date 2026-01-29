@@ -1,269 +1,430 @@
+/* =========================================
+   VARIABLES & CONFIGURATION
+   Defines the color palette, fonts, and base settings.
+   ========================================= */
 :root {
-    /* PALETTE: Retro Stripe */
-    --c-red:    #E76F51;
-    --c-orange: #F4A261;
-    --c-yellow: #E9C46A;
-    --c-cyan:   #2A9D8F;
-    --c-blue:   #264653;
-    
-    --c-bg:     #b6b6b6; /* Classic Mac Desktop Grey */
-    --c-win-bg: #FFFDF0; /* Paper White for Window Content */
-    --c-ink:    #1D1D1B;
-    
-    /* FONTS */
-    --font-head: 'Space Mono', monospace;
-    --font-body: 'Courier Prime', monospace;
+  /* Retro Stripe Palette */
+  --c-red:    #E76F51;
+  --c-orange: #F4A261;
+  --c-yellow: #E9C46A;
+  --c-cyan:   #2A9D8F;
+  --c-blue:   #264653;
+
+  /* UI Colors */
+  --c-bg:     #b6b6b6;
+  --c-win-bg: #FFFDF0;
+  --c-ink:    #1D1D1B;
+
+  /* Typography */
+  --font-head: 'Space Mono', monospace;
+  --font-body: 'Courier Prime', monospace;
 }
 
+/* =========================================
+   GLOBAL RESET & BODY
+   Sets up the box model and the desktop background pattern.
+   ========================================= */
 * { box-sizing: border-box; }
 
 body {
-    margin: 0;
-    padding: 0;
-    background-color: var(--c-bg);
-    /* Dotted Desktop Pattern */
-    /* The developer converts 1px stops to 0.0625rem and 20px sizing to 1.25rem */
-    background-image: radial-gradient(#888 0.0625rem, transparent 0.0625rem);
-    background-size: 1.25rem 1.25rem;
-    font-family: var(--font-body);
-    color: var(--c-ink);
-    padding-bottom: 5rem; /* Scroll space */
+  margin: 0;
+  padding: 0;
+  background-color: var(--c-bg);
+  /* Creates a dotted grid pattern using radial gradients */
+  background-image: radial-gradient(#888 0.0625rem, transparent 0.0625rem);
+  background-size: 1.25rem 1.25rem;
+  font-family: var(--font-body);
+  color: var(--c-ink);
+  padding-bottom: 5rem;
 }
 
-/* --- SYSTEM BAR (TOP) --- */
+/* =========================================
+   SYSTEM BAR (TOP HEADER)
+   Fixed navigation bar at the top of the viewport.
+   ========================================= */
 .system-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 1.875rem; /* 30px */
-    background: #FFF;
-    border-bottom: 0.125rem solid var(--c-ink); /* 2px */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    z-index: 1000;
-    font-family: var(--font-head);
-    font-size: 0.8rem;
-    box-shadow: 0 0.125rem 0 rgba(0,0,0,0.1); /* 2px shadow */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1.875rem;
+  background: #FFF;
+  border-bottom: 0.125rem solid var(--c-ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  box-shadow: 0 0.125rem 0 rgba(0,0,0,0.1);
 }
 
-.bar-left { display: flex; gap: 1.5rem; align-items: center; }
-.apple-icon { 
-    width: 1rem;       /* Matches text size */
-    height: 1.2rem; 
-    fill: var(--c-ink); /* Adopts the theme's ink color */
+.bar-left { 
+  display: flex; 
+  gap: 1.5rem; 
+  align-items: center; 
 }
-.menu-item a { text-decoration: none; color: inherit; }
-.menu-item:hover { text-decoration: underline; cursor: pointer; }
 
-/* --- DESKTOP LAYOUT --- */
+.apple-icon {
+  width: 1rem;
+  height: 1.2rem;
+  fill: var(--c-ink);
+}
+
+.menu-item a { 
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.menu-item:hover { 
+  text-decoration: underline; 
+  cursor: pointer; 
+}
+
+/* =========================================
+   DESKTOP & WINDOW LAYOUT
+   Container for the main content area.
+   ========================================= */
 .desktop-area {
-    padding-top: 3.75rem; /* 60px: Space for bar */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
+  padding-top: 3.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
 }
 
-/* --- WINDOW COMPONENT --- */
 .window-frame {
-    width: 90%;
-    max-width: 50rem; /* 800px */
-    background: var(--c-win-bg);
-    border: 0.125rem solid var(--c-ink); /* 2px */
-    box-shadow: 0.5rem 0.5rem 0 rgba(0,0,0,0.2); /* 8px */
-    display: flex;
-    flex-direction: column;
+  width: 90%;
+  max-width: 50rem;
+  background: var(--c-win-bg);
+  border: 0.125rem solid var(--c-ink);
+  box-shadow: 0.5rem 0.5rem 0 rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
 }
 
-/* THEME COLORS for Title Bars */
+.window-content {
+  padding: 2.5rem;
+  overflow: hidden;
+}
+
+.win-divider { 
+  border: 0; 
+  border-top: 0.125rem solid var(--c-ink); 
+  margin: 2rem 0; 
+}
+
+.win-footer { 
+  margin-top: 2rem; 
+  font-size: 0.8rem; 
+  opacity: 0.6; 
+}
+
+.win-footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.win-footer a:hover {
+  color: var(--c-blue);
+  opacity: 1;
+}
+
+/* =========================================
+   TITLE BAR COMPONENTS
+   Handles window headers, theme variations, and window controls.
+   ========================================= */
+.title-bar {
+  height: 2.1875rem;
+  border-bottom: 0.125rem solid var(--c-ink);
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+  justify-content: space-between;
+  font-family: var(--font-head);
+  font-weight: 700;
+  user-select: none;
+}
+
+/* Theme Classes */
 .theme-red    .title-bar { background: var(--c-red); }
 .theme-orange .title-bar { background: var(--c-orange); }
 .theme-yellow .title-bar { background: var(--c-yellow); }
 .theme-cyan   .title-bar { background: var(--c-cyan); }
 .theme-blue   .title-bar { background: var(--c-blue); color: #FFF; }
 
-/* TITLE BAR STRUCTURE */
-.title-bar {
-    height: 2.1875rem; /* 35px */
-    border-bottom: 0.125rem solid var(--c-ink); /* 2px */
-    display: flex;
-    align-items: center;
-    padding: 0 0.5rem;
-    justify-content: space-between;
-    font-family: var(--font-head);
-    font-weight: 700;
-    user-select: none;
-}
-
 .title-controls {
-    display: flex;
-    gap: 0.375rem; /* 6px */
+  display: flex;
+  gap: 0.375rem;
 }
 
-/* Retro Square Buttons */
 .btn {
-    width: 0.75rem;  /* 12px */
-    height: 0.75rem; /* 12px */
-    border: 0.125rem solid var(--c-ink); /* 2px */
-    background: #FFF;
-    box-shadow: 0.0625rem 0.0625rem 0 var(--c-ink); /* 1px */
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 0.125rem solid var(--c-ink);
+  background: #FFF;
+  box-shadow: 0.0625rem 0.0625rem 0 var(--c-ink);
 }
+
 .close-btn:hover { background: var(--c-ink); }
 
 .window-title {
-    text-transform: uppercase;
-    letter-spacing: 0.0625rem; /* 1px */
-    padding-left: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.0625rem;
+  padding-left: 0.6rem;
 }
 
-/* Lines for texture in title bar */
+/* Adds a striped texture to the title bar */
 .title-lines {
-    flex-grow: 1;
-    height: 40%;
-    margin-left: 1rem;
-    background-image: repeating-linear-gradient(
-        to bottom,
-        transparent,
-        transparent 0.125rem, /* 2px */
-        var(--c-ink) 0.125rem,
-        var(--c-ink) 0.1875rem /* 3px */
-    );
-    opacity: 0.1;
+  flex-grow: 1;
+  height: 40%;
+  margin-left: 1rem;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 0.125rem,
+    var(--c-ink) 0.125rem,
+    var(--c-ink) 0.1875rem
+  );
+  opacity: 0.1;
 }
 
-/* WINDOW CONTENT */
-.window-content {
-    padding: 2.5rem;
-    overflow: hidden;
-}
-
-/* HERO STYLES */
+/* =========================================
+   TYPOGRAPHY
+   Styles for headings, body text, and links.
+   ========================================= */
 .glitch-text {
-    font-family: var(--font-head);
-    font-size: clamp(2rem, 5vw, 4rem);
-    line-height: 1;
-    margin-bottom: 0.5rem;
+  font-family: var(--font-head);
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  margin-bottom: 0.5rem;
 }
+
 .role-subtitle {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    color: var(--c-blue);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: var(--c-blue);
 }
+
 .hero-summary p { margin-bottom: 0.5rem; }
-.cursor { animation: blink 1s infinite; }
-@keyframes blink { 50% { opacity: 0; } }
 
-/* TEXT STYLES */
 .lead-quote {
-    font-size: 1.5rem;
-    font-weight: 700;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    color: var(--c-blue);
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+  color: var(--c-blue);
 }
-.body-text { line-height: 1.6; font-size: 1.1rem; }
 
-/* JOB STYLES */
+.body-text { 
+  line-height: 1.6; 
+  font-size: 1.1rem; 
+}
+
+.center-text { text-align: center; }
+
+/* =========================================
+   JOB & EXPERIENCE LISTINGS
+   Layout for the resume section content.
+   ========================================= */
 .job-group { margin-bottom: 2rem; }
+
 .job-header {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 0.125rem dashed var(--c-ink); /* 2px */
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-    font-family: var(--font-head);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.125rem dashed var(--c-ink);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-family: var(--font-head);
 }
+
 .company-link {
-    color: var(--c-blue);
-    font-weight: 700;
-    text-decoration: underline;
+  color: var(--c-blue);
+  font-weight: 700;
+  text-decoration: underline;
 }
-.company-link:hover { background: var(--c-yellow); color: var(--c-ink); }
+
+.company-link:hover { 
+  background: var(--c-yellow); 
+  color: var(--c-ink); 
+}
 
 .role-block { margin-bottom: 1.5rem; }
+
 .role-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
-    font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
 }
-.role-meta span { font-family: var(--font-head); opacity: 0.7; }
+
+.role-meta span { 
+  font-family: var(--font-head); 
+  opacity: 0.7; 
+}
 
 .retro-list {
-    list-style-type: square;
-    padding-left: 1.5rem;
+  list-style-type: square;
+  padding-left: 1.5rem;
 }
+
 .retro-list li { margin-bottom: 0.5rem; }
+
 .highlight {
-    background: rgba(233, 196, 106, 0.4);
-    padding: 0 0.25rem; /* 4px */
+  background: rgba(233, 196, 106, 0.4);
+  padding: 0 0.25rem;
 }
-.win-divider { border: 0; border-top: 0.125rem solid var(--c-ink); margin: 2rem 0; }
 
-/* EDUCATION GRID (Folders) */
+/* =========================================
+   GRID COMPONENTS (EDUCATION)
+   Two-column folder layout.
+   ========================================= */
 .grid-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
 }
+
 .folder-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 1.5rem;
-    border: 0.0625rem dotted var(--c-ink); /* 1px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border: 0.0625rem dotted var(--c-ink);
 }
+
 .folder-item:hover {
-    background: var(--c-cyan);
-    color: #FFF;
-    border-style: solid;
+  background: var(--c-cyan);
+  color: #FFF;
+  border-style: solid;
 }
-.folder-icon { font-size: 3rem; margin-bottom: 1rem; }
 
-/* CONTACT STYLES */
-.center-text { text-align: center; }
+.folder-icon { 
+  font-size: 3rem; 
+  margin-bottom: 1rem; 
+}
+
+/* =========================================
+   BUTTONS & INTERACTIONS
+   Retro-styled clickable elements.
+   ========================================= */
 .btn-retro {
-    display: inline-block;
-    background: var(--c-ink);
-    color: #FFF;
-    padding: 1rem 2rem;
-    text-decoration: none;
-    font-family: var(--font-head);
-    font-weight: 700;
-    margin: 2rem 0;
-    box-shadow: 0.25rem 0.25rem 0 var(--c-blue); /* 4px */
-    transition: transform 0.1s;
+  display: inline-block;
+  background: var(--c-ink);
+  color: #FFF;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-family: var(--font-head);
+  font-weight: 700;
+  margin: 2rem 0;
+  box-shadow: 0.25rem 0.25rem 0 var(--c-blue);
+  transition: transform 0.1s;
 }
+
 .btn-retro:active { 
-    transform: translate(0.125rem, 0.125rem); /* 2px */
-    box-shadow: 0.125rem 0.125rem 0 var(--c-blue); /* 2px */
+  transform: translate(0.125rem, 0.125rem);
+  box-shadow: 0.125rem 0.125rem 0 var(--c-blue);
 }
-.link-dock a { color: var(--c-ink); font-weight: 700; text-decoration: underline; }
+
+.link-dock a { 
+  color: var(--c-ink); 
+  font-weight: 700; 
+  text-decoration: underline; 
+}
+
 .link-dock a:hover { color: var(--c-blue); }
-.win-footer { margin-top: 2rem; font-size: 0.8rem; opacity: 0.6; }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 37.5rem) { /* 600px */
-    .grid-content { grid-template-columns: 1fr; }
-    .role-meta { flex-direction: column; }
-    .window-content { padding: 1.5rem; }
-    .glitch-text { font-size: 2.5rem; }
-    .system-bar { padding: 0 0.5rem; }
-    .bar-left { gap: 0.8rem; }
+/* =========================================
+   ANIMATIONS
+   Keyframes and transition effects.
+   ========================================= */
+.cursor { 
+  font-weight: bold;
+  animation: blink 1s steps(1) infinite; 
 }
 
-/* Footer Link Styling */
-.win-footer a {
-    color: inherit;            /* Inherits the footer's text color */
-    text-decoration: underline;
+/* Creates a hard on/off toggle without fading */
+@keyframes blink { 
+  0% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
-.win-footer a:hover {
-    color: var(--c-blue);      /* Matches other links on hover */
-    opacity: 1;                /* Makes it stand out from the faded footer */
+/* =========================================
+   MOBILE RESPONSIVENESS
+   Adjustments for smaller viewports.
+   ========================================= */
+@media (max-width: 37.5rem) {
+  .grid-content { grid-template-columns: 1fr; }
+  .role-meta { flex-direction: column; }
+  .window-content { padding: 1.5rem; }
+  .glitch-text { font-size: 2.5rem; }
+  .system-bar { padding: 0 0.5rem; }
+  .bar-left { gap: 0.8rem; }
+}
+
+/* =========================================
+   LOADING SCREEN
+   Full-screen overlay for the initial landing.
+   ========================================= */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--c-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  font-family: var(--font-head);
+}
+
+.loading-box {
+  width: 90%;
+  max-width: 25rem;
+  padding: 2rem;
+  background: var(--c-win-bg);
+  border: 0.125rem solid var(--c-ink);
+  box-shadow: 0.5rem 0.5rem 0 var(--c-ink);
+  text-align: center;
+}
+
+.loading-text {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.progress-container {
+  width: 100%;
+  height: 1.5rem;
+  border: 0.125rem solid var(--c-ink);
+  background: #FFF;
+  margin-bottom: 1rem;
+  padding: 0.125rem;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--c-cyan);
+  /* Animates the bar filling up over 1.8 seconds */
+  transition: width 1.8s ease-in-out;
+}
+
+.loading-status {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+/* Class to fade out the loader */
+.loader-finished {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
